@@ -1,0 +1,696 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     29340,        688]
+NotebookOptionsPosition[     24696,        616]
+NotebookOutlinePosition[     25212,        636]
+CellTagsIndexPosition[     25169,        633]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["EM Fields, Sources and Potentials", "Title",
+ CellChangeTimes->{{3.6998681220516653`*^9, 3.699868133164301*^9}, {
+  3.7034849002619*^9, 3.703484907206594*^9}, {3.729499308684236*^9, 
+  3.729499335921236*^9}, {3.7591305627482285`*^9, 
+  3.7591305670437536`*^9}},ExpressionUUID->"c446e085-3a84-4704-bdd1-\
+e73b7a5c793d"],
+
+Cell["\<\
+Hands-on for Applied Mathematics and Applied Physics Students\
+\>", "Subtitle",
+ CellChangeTimes->{{3.6133238421491637`*^9, 3.613323864625449*^9}, 
+   3.613323909357008*^9, 3.6133268064447117`*^9, {3.631866261078787*^9, 
+   3.6318662688525643`*^9}, {3.6340305426005135`*^9, 
+   3.6340305455455136`*^9}, {3.703485163465217*^9, 3.703485170809952*^9}, 
+   3.729499344658236*^9, {3.7591305704597855`*^9, 
+   3.7591305762354555`*^9}},ExpressionUUID->"7e1ac10b-148f-44b0-9013-\
+88186bf5daa5"],
+
+Cell[CellGroupData[{
+
+Cell["Part 4: Application to Electromagnetic Fields", "Chapter",
+ CellChangeTimes->{{3.7034849252704*^9, 3.7034849352233953`*^9}, {
+  3.703485105262398*^9, 3.703485108126684*^9}, {3.729489900028997*^9, 
+  3.7294899004350376`*^9}, {3.729499348801236*^9, 3.729499363664236*^9}, {
+  3.729531959219705*^9, 
+  3.729531963305419*^9}},ExpressionUUID->"0c129341-d1dd-47f1-b40d-\
+196e5cc0b1dd"],
+
+Cell[TextData[StyleBox["<<your name>>",
+ Background->RGBColor[0.87, 0.94, 1]]], "Text",
+ CellChangeTimes->{{3.7034849598548584`*^9, 3.703484966009474*^9}, {
+  3.703484998593732*^9, 3.703485002066079*^9}, {3.7034851791297836`*^9, 
+  3.703485180913962*^9}},ExpressionUUID->"36ff5544-3b22-42d2-868a-\
+0e11c07a4b12"],
+
+Cell[BoxData[
+ RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7034851878266535`*^9, 3.7034852093638067`*^9}, {
+  3.729536960575879*^9, 
+  3.729536961903763*^9}},ExpressionUUID->"148e9875-fc8f-4982-8d02-\
+d7ec7c7d7b9d"],
+
+Cell[BoxData["Now"], "Input",
+ CellChangeTimes->{{3.703484941379011*^9, 3.7034849459034634`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Introduction", "Subchapter",
+ CellChangeTimes->{{3.729499393804236*^9, 
+  3.729499396918236*^9}},ExpressionUUID->"5cf6b142-106e-411d-b5e1-\
+5da8665b03e2"],
+
+Cell["\<\
+By now you have seen most of the tools that can be of help with the \
+exploration of electromagnetism and learning the concepts in this field. The \
+application of Vector Calculus in various coordinate systems is a major \
+component in the mathematics you need for electromagnetism. \
+\>", "Text",
+ CellChangeTimes->{{3.7294994177802362`*^9, 3.729499536822236*^9}, {
+  3.7295305750736027`*^9, 3.7295306144317713`*^9}, {3.72953196736412*^9, 
+  3.7295319843414087`*^9}},ExpressionUUID->"ea8f79ac-7d87-4e0f-abc1-\
+504dde3ee010"],
+
+Cell["\<\
+You find a few problems to tackle electromagnetic problems, and a free \
+assignment in which you are free to chose your own subject within E&M. \
+\>", "Text",
+ CellChangeTimes->{{3.7294995481492357`*^9, 3.729499659643626*^9}, {
+   3.729499707539777*^9, 3.72949975691752*^9}, 3.729531975438489*^9, {
+   3.7295359445743895`*^9, 
+   3.7295359483428936`*^9}},ExpressionUUID->"e7536752-e573-41b6-b139-\
+1d8c444c46df"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Assignments", "Subchapter",
+ CellChangeTimes->{{3.729499812976935*^9, 
+  3.72949981766681*^9}},ExpressionUUID->"e41f215c-f741-4351-8aaa-\
+1708b8713a0c"],
+
+Cell["\<\
+The assignments have a more open character, in the sense that \
+\>", "Text",
+ CellChangeTimes->{{3.7295003014444914`*^9, 
+  3.7295003315104976`*^9}},ExpressionUUID->"38574ba4-1ed3-45db-ab95-\
+b34659c8ae1b"],
+
+Cell["\<\
+Identification of Fields: Determine from the fields below, whether this can \
+be an electric or magnetic field; additional make a suitable visualisation of \
+the field. In case the field is an electric or magnetic field make a function \
+of the charge distribution or the current distribution respectively. \
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.729499919791438*^9}, {3.7295000406606073`*^9, 
+  3.7295000732351213`*^9}, {3.729502771597432*^9, 3.7295027884304323`*^9}, {
+  3.729531075710444*^9, 3.7295311184518614`*^9}, {3.7295322258986444`*^9, 
+  3.7295323169082594`*^9}},ExpressionUUID->"42e97c97-43b3-4a6a-a188-\
+02a5f477ff80"],
+
+Cell["\<\
+Note: the value of the Divergence and the Curl tell you something about the \
+field. \
+\>", "Text",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.729499919791438*^9}, {3.7295000406606073`*^9, 
+  3.7295000732351213`*^9}, {3.729502771597432*^9, 3.7295027884304323`*^9}, {
+  3.729531075710444*^9, 
+  3.7295311184518614`*^9}},ExpressionUUID->"c764df86-4de0-4704-8e80-\
+e1f309035dad"],
+
+Cell["Field 1 in Cartesian-coordinates:", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.7294999409636717`*^9}, {3.729500079450364*^9, 
+  3.7295001045043736`*^9}, {3.7295331854102163`*^9, 
+  3.7295331893978662`*^9}},ExpressionUUID->"c48ff7a6-9fa6-4e00-8515-\
+d06c084cd651"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F1", "[", 
+   RowBox[{"x_", ",", "y_", ",", "z_"}], "]"}], "=", " ", 
+  RowBox[{"{", 
+   RowBox[{"y", ",", "x", "  ", ",", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      SuperscriptBox["y", "2"]}], 
+     RowBox[{"x", " ", "y"}]]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.729499980672612*^9, 3.729500016928862*^9}, {
+  3.7295331995286026`*^9, 3.729533209219045*^9}, {3.7295336204490237`*^9, 
+  3.729533643147112*^9}},ExpressionUUID->"e57c6733-8987-41a5-8a36-\
+b9f2f10d82f3"],
+
+Cell["Field 2 in Spherical-coordinates:", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.7294999464387665`*^9}, {3.729500094703414*^9, 
+  3.7295001064087543`*^9}, {3.7295321177157154`*^9, 
+  3.729532120417511*^9}},ExpressionUUID->"06f7adc3-bde6-40cb-8d6e-\
+513bdcecd4c0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F2", "[", 
+   RowBox[{"r_", ",", "\[Theta]_", ",", "\[Phi]_"}], "]"}], "=", 
+  RowBox[{
+   FractionBox["k", "r"], 
+   RowBox[{"{", 
+    RowBox[{"3", ",", 
+     RowBox[{"2", " ", 
+      RowBox[{"Sin", "[", "\[Theta]", "]"}], " ", 
+      RowBox[{"Cos", "[", "\[Theta]", "]"}], " ", 
+      RowBox[{"Sin", "[", "\[Phi]", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"Sin", "[", "\[Theta]", "]"}], " ", 
+      RowBox[{"Cos", "[", "\[Phi]", "]"}]}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.729499980672612*^9, 3.7295000304995756`*^9}, 
+   3.729532109899518*^9},ExpressionUUID->"97397e9a-82d3-49bf-9fec-\
+6001c40f6216"],
+
+Cell["\<\
+Field 3 in Cylindrical-coordinates: (The result of this field might appear \
+not familiar to you, however it is correct. Explain your results. )\
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.729499950041487*^9}, {3.729500097045882*^9, 
+  3.729500108166106*^9}, {3.7295330465498934`*^9, 
+  3.7295331675224752`*^9}},ExpressionUUID->"930fb771-d4ce-4ddf-a121-\
+f470a615e4d8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F3", "[", 
+   RowBox[{"s_", ",", "\[Phi]_", ",", "z_"}], "]"}], "=", " ", 
+  RowBox[{"{", 
+   RowBox[{"0", ",", "0", ",", 
+    TagBox[GridBox[{
+       {"\[Piecewise]", GridBox[{
+          {"1", 
+           RowBox[{"s", "<", "2"}]},
+          {"0", "True"}
+         },
+         AllowedDimensions->{2, Automatic},
+         Editable->True,
+         GridBoxAlignment->{
+          "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+           "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+         GridBoxItemSize->{
+          "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+           "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+         GridBoxSpacings->{"Columns" -> {
+             Offset[0.27999999999999997`], {
+              Offset[0.84]}, 
+             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+             Offset[0.2], {
+              Offset[0.4]}, 
+             Offset[0.2]}, "RowsIndexed" -> {}},
+         Selectable->True]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{
+       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.35]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}],
+     "Piecewise",
+     DeleteWithContents->True,
+     Editable->False,
+     SelectWithContents->True,
+     Selectable->False]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.729499980672612*^9, 3.7295000341233006`*^9}, {
+  3.72953238497318*^9, 
+  3.729532456220191*^9}},ExpressionUUID->"851b4bb6-118d-4081-9470-\
+7346214db1c0"],
+
+Cell["Field 4 in Spherical-coordinates:", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998580349507`*^9}, {
+  3.729499899434368*^9, 3.7294999533411474`*^9}, {3.7295001018388405`*^9, 
+  3.729500109546382*^9}, {3.7295336606226287`*^9, 
+  3.729533663710682*^9}},ExpressionUUID->"2354ecd9-8384-48fb-a51d-\
+efbbc80164a8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"F4", "[", 
+   RowBox[{"r_", ",", "\[Theta]_", ",", "\[Phi]_"}], "]"}], "=", " ", 
+  RowBox[{"{", 
+   RowBox[{"0", ",", "0", ",", 
+    FractionBox[
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", " ", "r"}]], "r"]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.729499980672612*^9, 3.7295000374769707`*^9}, {
+  3.729533672484517*^9, 3.7295337315489717`*^9}, {3.7295338961970835`*^9, 
+  3.7295339044555745`*^9}},ExpressionUUID->"2f36a857-8f97-42d2-b782-\
+47b0ad2d3ca1"],
+
+Cell[CellGroupData[{
+
+Cell["Calculation of the magnetic field using Ampere\[CloseCurlyQuote]s law", \
+"ItemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502548109432*^9, 3.729502548117432*^9}, {3.729533957107582*^9, 
+  3.729533957112585*^9}},ExpressionUUID->"a8257794-2534-4053-b1c4-\
+729c5f64deb0"],
+
+Cell["\<\
+Calculate the magnetic field of a current distribution, that is given by:\
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502548109432*^9, 3.729502548117432*^9}, {3.729533965780349*^9, 
+  3.7295339883843775`*^9}, {3.729534259652523*^9, 
+  3.7295342596535244`*^9}},ExpressionUUID->"a987e6dd-fb59-4d69-a707-\
+8df62e84ac4e"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"jj", "[", 
+   RowBox[{"s_", ",", "\[Phi]_", ",", "z_"}], "]"}], "=", 
+  RowBox[{"{", 
+   RowBox[{"0", ",", "0", ",", " ", 
+    TagBox[GridBox[{
+       {"\[Piecewise]", GridBox[{
+          {
+           RowBox[{"1", "-", 
+            SuperscriptBox["s", "2"]}], 
+           RowBox[{"0", "\[LessEqual]", "s", "<", "1"}]},
+          {"0", "True"}
+         },
+         AllowedDimensions->{2, Automatic},
+         Editable->True,
+         GridBoxAlignment->{
+          "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+           "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+         GridBoxItemSize->{
+          "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+           "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+         GridBoxSpacings->{"Columns" -> {
+             Offset[0.27999999999999997`], {
+              Offset[0.84]}, 
+             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+             Offset[0.2], {
+              Offset[0.4]}, 
+             Offset[0.2]}, "RowsIndexed" -> {}},
+         Selectable->True]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{
+       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.35]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}],
+     "Piecewise",
+     DeleteWithContents->True,
+     Editable->False,
+     SelectWithContents->True,
+     Selectable->False]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.7295339979497375`*^9, 3.729534024312269*^9}, {
+  3.7295340583110313`*^9, 3.729534079182908*^9}, {3.7295344616868677`*^9, 
+  3.7295344701805143`*^9}},ExpressionUUID->"0c9ad6c6-433f-4f9c-bc0c-\
+371fa165ebba"],
+
+Cell[TextData[{
+ "Hint: do not calculate this magnetic field in vector notation; use Solve on \
+the expression of Ampere\[CloseCurlyQuote]s law for ",
+ StyleBox["B",
+  FontSlant->"Italic"],
+ " and use the solution to define a magnetic field function. "
+}], "Text",
+ CellChangeTimes->{{3.72953484462534*^9, 3.7295349740661144`*^9}, {
+   3.729535303115122*^9, 3.7295353371751347`*^9}, 
+   3.729535981211749*^9},ExpressionUUID->"c760a50d-2b9a-4be6-ab12-\
+2d3cb29d9c04"],
+
+Cell[TextData[{
+ "Plot the magnetic field as a function of the radial coordinate ",
+ StyleBox["s",
+  FontSlant->"Italic"],
+ "."
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502548109432*^9, 3.729502548117432*^9}, {3.729533965780349*^9, 
+  3.7295339883843775`*^9}, {3.729534272094796*^9, 
+  3.729534298421301*^9}},ExpressionUUID->"297daa83-c8f3-4e4f-9d25-\
+6af59113fe55"],
+
+Cell[TextData[{
+ "Consider a infinite thin disk with radius ",
+ StyleBox["R",
+  FontSlant->"Italic"],
+ ", that is located with its center in the origin and its normal in in the \
+positive ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-direction. The disk has a surface charge density \[Sigma] that is in \
+principle a function of the distance to the center of the disk. The disk can \
+rotate on its center with the \[Omega]-vector in the positive ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-direction. (for convenience set the value of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Epsilon]", "0"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "e05e5e46-47b6-401b-b8b5-51dc00f24f0a"],
+ " to 1. "
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503059975432*^9, 3.729503059976432*^9}, {
+  3.7295306668282075`*^9, 3.72953068282384*^9}, {3.729531160125101*^9, 
+  3.729531189701767*^9}},ExpressionUUID->"611cfaf8-84d3-4c8f-8853-\
+2bf1ed37c908"],
+
+Cell[TextData[{
+ "First consider the situation of a static disk: \[Omega] = 0 and a \
+homogeneous charge surface charge distribution \[Sigma](s) = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Sigma]", "0"], TraditionalForm]],ExpressionUUID->
+  "22746786-86fc-49df-b24c-b5492c033ebd"],
+ " ."
+}], "Text",
+ CellChangeTimes->{{3.729502976737432*^9, 3.729503030431432*^9}, {
+  3.729530706848813*^9, 3.729530766129228*^9}, {3.729531211381181*^9, 
+  3.7295312122827797`*^9}, {3.7295312515729036`*^9, 
+  3.729531252247352*^9}},ExpressionUUID->"58f1abcf-2339-43f7-854c-\
+1b1cbeaab1eb"],
+
+Cell[TextData[{
+ "Make a function of the Electric field on an arbitrary position on the ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-axis. "
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503184513432*^9, 3.729503184513432*^9}, {3.729531705889679*^9, 
+  3.7295317113873353`*^9}},ExpressionUUID->"46bc559c-c5e7-438c-8b76-\
+723ee8f17741"],
+
+Cell["\<\
+Chose an appropriate coordinate system. Define the function for the charge \
+distribution, setup the integral. \
+\>", "Text",
+ CellChangeTimes->{{3.729530796968686*^9, 3.729530818127754*^9}, {
+  3.7295308526256933`*^9, 
+  3.7295309202216363`*^9}},ExpressionUUID->"de408d38-d26e-405d-a534-\
+9ab38ce5503b"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Plot the electric field as a function of the ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-coordinate (set ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[Sigma]", "0"], "=", "1"}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "3b1dce32-89a5-4c23-885c-90cf62a3dc73"],
+ "; ",
+ StyleBox["R",
+  FontSlant->"Italic"],
+ "=1)."
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.729503208559432*^9}, {3.729531256195979*^9, 
+  3.729531272438777*^9}, {3.729531416725875*^9, 
+  3.7295314201591573`*^9}},ExpressionUUID->"3766f233-a6d7-41dc-bbf3-\
+b23cd5e76b68"],
+
+Cell[TextData[{
+ "Determine the potential along the ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-axis and plot this function in the same plot."
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.729531006801632*^9, 
+  3.729531006805632*^9}},ExpressionUUID->"8cb30036-87e8-4bab-a3e7-\
+a50376158228"],
+
+Cell["\<\
+(Optional) Make a function for the electric field at an arbitrary point in \
+space, i.e. dependent on the three individual coordinates.  For this you need \
+to perform a numerical integration. \
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295313830604954`*^9}, {
+  3.7295695906282983`*^9, 
+  3.7295695954883537`*^9}},ExpressionUUID->"9ab8b1a8-e97c-464f-9baf-\
+56d4a8dc8792"],
+
+Cell[TextData[{
+ "(Optional) Visualize the field above the disk on the ",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ "-",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-plane containing the ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-axis."
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295315482158065`*^9, 
+  3.7295315482168074`*^9}, {3.7295696045087442`*^9, 
+  3.7295696074065847`*^9}},ExpressionUUID->"2afc60aa-23f0-4b5d-8402-\
+fbee6acc4254"]
+}, Open  ]],
+
+Cell["\<\
+Now we let the disk rotate with an angular frequency \[Omega]. The moving \
+charge distribution is equivalent with a surface current. \
+\>", "Text",
+ CellChangeTimes->{{3.729531553294181*^9, 
+  3.7295316301512814`*^9}},ExpressionUUID->"51ab06a3-aea9-4f27-86e4-\
+8c89d6faa5cb"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Construct a function that describes the surface current in space; note that \
+this function is a vector function. \
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.7295316881158257`*^9}},ExpressionUUID->"02f8f978-a878-42c0-b300-\
+cb5192159bad"],
+
+Cell[TextData[{
+ "Make a function of the Magnetic field on an arbitrary position on the ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ "-axis. "
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.729531777751464*^9}},ExpressionUUID->"73a333ab-ceef-4a35-9a60-\
+49d75b91d4b2"],
+
+Cell[TextData[{
+ "Plot the magnetic field  as a function of the z-coordinate (set ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Sigma]", "0"], "=", "1"}], ";", " ", 
+       RowBox[{"R", "=", "1"}]}], ",", " ", 
+      RowBox[{"\[Omega]", "=", "1"}]}], ")"}], "."}], TraditionalForm]],
+  ExpressionUUID->"988ed532-1e94-4d23-8056-1f8743b1198a"]
+}], "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.729531836146283*^9}},ExpressionUUID->"d1e1b6bb-38c1-4e21-bba3-\
+8bc616469123"],
+
+Cell["\<\
+(Optional) Make a function for the magnetic field at an arbitrary point in \
+space, i.e. dependent on the three individual coordinates. For this you need \
+to perform a numerical integration.  \
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.7295319052728386`*^9}, {3.729569614119898*^9, 
+  3.729569619045927*^9}},ExpressionUUID->"ff15144f-6b41-4e07-b0f8-\
+f974aface2a4"],
+
+Cell["\<\
+(Optional) Visualize the field above the disk on the x-z-plane containing the \
+z-axis. \
+\>", "SubitemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.729531934040963*^9}, {3.729535993214729*^9, 3.7295359932157297`*^9}, {
+  3.7295696224525633`*^9, 
+  3.7295696270717154`*^9}},ExpressionUUID->"b34631ba-b5d5-40d8-b956-\
+47e492aa5f70"]
+}, Open  ]],
+
+Cell["\<\
+Chose a subject of your own from E&M to set up a calculation in Mathematica. \
+In case you do not have inspiration, chose one of the problems, e.g. from \
+chapter 4 of Griffiths: electrostatics in materials. Set up a calculation in \
+which you show you can apply Mathematica to a serious problem. Use \
+visualisations of your calculations to present your results. \
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.7294998391283913`*^9, 3.7294998757806377`*^9}, {
+  3.729502551758432*^9, 3.729502619285432*^9}, {3.729502826994432*^9, 
+  3.729502963843432*^9}, {3.729503070573432*^9, 3.729503110554432*^9}, {
+  3.729503187358432*^9, 3.7295032434974318`*^9}, {3.7295312287267137`*^9, 
+  3.7295312409758587`*^9}, {3.7295312851132045`*^9, 3.7295314022742667`*^9}, {
+  3.7295314363229055`*^9, 3.729531517529401*^9}, {3.7295316356729527`*^9, 
+  3.729531934040963*^9}, {3.7295360898866277`*^9, 
+  3.7295362962319736`*^9}},ExpressionUUID->"07db4e1e-d8d1-4771-8834-\
+99b548b8ce64"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 814},
+WindowMargins->{{229, Automatic}, {Automatic, 78}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.3199999999999, 841.92}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 324, 5, 96, "Title",ExpressionUUID->"c446e085-3a84-4704-bdd1-e73b7a5c793d"],
+Cell[907, 29, 496, 9, 53, "Subtitle",ExpressionUUID->"7e1ac10b-148f-44b0-9013-88186bf5daa5"],
+Cell[CellGroupData[{
+Cell[1428, 42, 385, 6, 67, "Chapter",ExpressionUUID->"0c129341-d1dd-47f1-b40d-196e5cc0b1dd"],
+Cell[1816, 50, 312, 5, 34, "Text",ExpressionUUID->"36ff5544-3b22-42d2-868a-0e11c07a4b12"],
+Cell[2131, 57, 253, 5, 28, "Input",ExpressionUUID->"148e9875-fc8f-4982-8d02-d7ec7c7d7b9d"],
+Cell[2387, 64, 97, 1, 28, "Input",ExpressionUUID->"4ef3aa9c-a3c5-4608-9f40-083d88857717"],
+Cell[CellGroupData[{
+Cell[2509, 69, 160, 3, 64, "Subchapter",ExpressionUUID->"5cf6b142-106e-411d-b5e1-5da8665b03e2"],
+Cell[2672, 74, 535, 9, 78, "Text",ExpressionUUID->"ea8f79ac-7d87-4e0f-abc1-504dde3ee010"],
+Cell[3210, 85, 422, 8, 56, "Text",ExpressionUUID->"e7536752-e573-41b6-b139-1d8c444c46df"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3669, 98, 158, 3, 64, "Subchapter",ExpressionUUID->"e41f215c-f741-4351-8aaa-1708b8713a0c"],
+Cell[3830, 103, 216, 5, 34, "Text",ExpressionUUID->"38574ba4-1ed3-45db-ab95-b34659c8ae1b"],
+Cell[4049, 110, 720, 11, 71, "ItemNumbered",ExpressionUUID->"42e97c97-43b3-4a6a-a188-02a5f477ff80"],
+Cell[4772, 123, 440, 9, 34, "Text",ExpressionUUID->"c764df86-4de0-4704-8e80-e1f309035dad"],
+Cell[5215, 134, 342, 5, 26, "SubitemNumbered",ExpressionUUID->"c48ff7a6-9fa6-4e00-8515-d06c084cd651"],
+Cell[5560, 141, 539, 14, 57, "Input",ExpressionUUID->"e57c6733-8987-41a5-8a36-b9f2f10d82f3"],
+Cell[6102, 157, 340, 5, 26, "SubitemNumbered",ExpressionUUID->"06f7adc3-bde6-40cb-8d6e-513bdcecd4c0"],
+Cell[6445, 164, 650, 17, 52, "Input",ExpressionUUID->"97397e9a-82d3-49bf-9fec-6001c40f6216"],
+Cell[7098, 183, 457, 8, 45, "SubitemNumbered",ExpressionUUID->"930fb771-d4ce-4ddf-a121-f470a615e4d8"],
+Cell[7558, 193, 1872, 50, 45, "Input",ExpressionUUID->"851b4bb6-118d-4081-9470-7346214db1c0"],
+Cell[9433, 245, 340, 5, 26, "SubitemNumbered",ExpressionUUID->"2354ecd9-8384-48fb-a51d-efbbc80164a8"],
+Cell[9776, 252, 509, 12, 53, "Input",ExpressionUUID->"2f36a857-8f97-42d2-b782-47b0ad2d3ca1"],
+Cell[CellGroupData[{
+Cell[10310, 268, 320, 5, 31, "ItemNumbered",ExpressionUUID->"a8257794-2534-4053-b1c4-729c5f64deb0"],
+Cell[10633, 275, 386, 7, 26, "SubitemNumbered",ExpressionUUID->"a987e6dd-fb59-4d69-a707-8df62e84ac4e"]
+}, Open  ]],
+Cell[11034, 285, 2012, 52, 47, "Input",ExpressionUUID->"0c9ad6c6-433f-4f9c-bc0c-371fa165ebba"],
+Cell[13049, 339, 466, 10, 56, "Text",ExpressionUUID->"c760a50d-2b9a-4be6-ab12-2d3cb29d9c04"],
+Cell[13518, 351, 426, 10, 26, "SubitemNumbered",ExpressionUUID->"297daa83-c8f3-4e4f-9d25-6af59113fe55"],
+Cell[13947, 363, 1111, 26, 91, "ItemNumbered",ExpressionUUID->"611cfaf8-84d3-4c8f-8853-2bf1ed37c908"],
+Cell[15061, 391, 579, 13, 56, "Text",ExpressionUUID->"58f1abcf-2339-43f7-854c-1b1cbeaab1eb"],
+Cell[15643, 406, 534, 11, 26, "SubitemNumbered",ExpressionUUID->"46bc559c-c5e7-438c-8b76-723ee8f17741"],
+Cell[16180, 419, 314, 7, 56, "Text",ExpressionUUID->"de408d38-d26e-405d-a534-9ab38ce5503b"],
+Cell[CellGroupData[{
+Cell[16519, 430, 819, 22, 26, "SubitemNumbered",ExpressionUUID->"3766f233-a6d7-41dc-bbf3-b23cd5e76b68"],
+Cell[17341, 454, 537, 11, 26, "SubitemNumbered",ExpressionUUID->"8cb30036-87e8-4bab-a3e7-a50376158228"],
+Cell[17881, 467, 709, 12, 45, "SubitemNumbered",ExpressionUUID->"9ab8b1a8-e97c-464f-9baf-56d4a8dc8792"],
+Cell[18593, 481, 838, 20, 26, "SubitemNumbered",ExpressionUUID->"2afc60aa-23f0-4b5d-8402-fbee6acc4254"]
+}, Open  ]],
+Cell[19446, 504, 286, 6, 56, "Text",ExpressionUUID->"51ab06a3-aea9-4f27-86e4-8c89d6faa5cb"],
+Cell[CellGroupData[{
+Cell[19757, 514, 678, 11, 45, "SubitemNumbered",ExpressionUUID->"02f8f978-a878-42c0-b300-cb5192159bad"],
+Cell[20438, 527, 690, 13, 26, "SubitemNumbered",ExpressionUUID->"73a333ab-ceef-4a35-9a60-49d75b91d4b2"],
+Cell[21131, 542, 968, 21, 26, "SubitemNumbered",ExpressionUUID->"d1e1b6bb-38c1-4e21-bba3-8bc616469123"],
+Cell[22102, 565, 806, 13, 45, "SubitemNumbered",ExpressionUUID->"ff15144f-6b41-4e07-b0f8-f974aface2a4"],
+Cell[22911, 580, 754, 13, 26, "SubitemNumbered",ExpressionUUID->"b34631ba-b5d5-40d8-b956-47e492aa5f70"]
+}, Open  ]],
+Cell[23680, 596, 976, 15, 91, "ItemNumbered",ExpressionUUID->"07db4e1e-d8d1-4771-8834-99b548b8ce64"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
